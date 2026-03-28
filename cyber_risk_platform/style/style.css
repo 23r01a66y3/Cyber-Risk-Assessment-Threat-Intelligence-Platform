@@ -1,0 +1,115 @@
+/* 🔥 GLOBAL DARK AI UI */
+body {
+margin: 0;
+font-family: 'Segoe UI', sans-serif;
+color: white;
+
+```
+background:
+    linear-gradient(rgba(10,15,30,0.9), rgba(10,15,30,0.95)),
+    url("/static/bg.jpg");
+
+background-size: cover;
+background-position: center;
+background-attachment: fixed;
+```
+
+}
+
+/* 🔹 NAVBAR (LIKE YOUR IMAGE) */
+.navbar {
+display: flex;
+gap: 15px;
+padding: 15px 30px;
+background: rgba(20,30,50,0.7);
+backdrop-filter: blur(10px);
+}
+
+.navbar button {
+padding: 10px 15px;
+border-radius: 10px;
+border: none;
+background: transparent;
+color: white;
+cursor: pointer;
+}
+
+.navbar button:hover {
+background: #3b82f6;
+}
+
+/* 🔹 HEADER */
+.header {
+padding: 20px 30px;
+}
+
+/* 🔹 INPUT */
+form input {
+padding: 10px;
+border-radius: 8px;
+border: none;
+}
+
+form button {
+padding: 10px 15px;
+border-radius: 8px;
+border: none;
+background: #3b82f6;
+color: white;
+cursor: pointer;
+}
+
+/* 🔹 MAIN CONTENT */
+.main {
+padding: 30px;
+}
+
+/* 🔹 KPI CARDS */
+.kpi-container {
+display: flex;
+gap: 20px;
+margin-top: 20px;
+}
+
+.kpi {
+flex: 1;
+padding: 20px;
+border-radius: 15px;
+background: rgba(255,255,255,0.05);
+backdrop-filter: blur(12px);
+text-align: center;
+font-size: 18px;
+}
+
+/* 🔹 CHART GRID */
+.chart-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 25px;
+margin-top: 30px;
+}
+
+.chart-card {
+padding: 20px;
+border-radius: 15px;
+background: rgba(255,255,255,0.05);
+backdrop-filter: blur(12px);
+text-align: center;
+}
+
+/* 🔹 TABLE */
+table {
+width: 100%;
+margin-top: 20px;
+border-collapse: collapse;
+background: rgba(255,255,255,0.05);
+}
+
+th {
+background: rgba(255,255,255,0.1);
+}
+
+td, th {
+padding: 12px;
+text-align: center;
+}

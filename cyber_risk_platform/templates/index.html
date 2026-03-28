@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Cyber Risk Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+```
+<!-- 🔹 SIDEBAR -->
+<div class="sidebar">
+    <h2>🛡️ Cyber Risk Intelligence Dashboard</h2>
+
+    <form method="POST">
+        <input type="text" name="target" placeholder="Enter IP" required>
+        <button type="submit">Scan</button>
+    </form>
+
+    <hr>
+    <div class="navbar">
+        <button onclick="showPage('home')">🏠 Home</button>
+        <button onclick="showPage('charts')">📊 Charts</button>
+        <button onclick="showPage('results')">📋 Results</button>
+        <button onclick="showPage('threat')">🌐 Threat</button>
+    </div>
+</div>
+
+<!-- 🔹 MAIN -->
+<div class="main">
+
+    <!-- 🏠 HOME -->
+    <div id="home" class="page">
+        <h1>Dashboard Overview</h1>
+
+        <div class="kpi-container">
+            <div class="kpi">Ports: {{ ports|length }}</div>
+            <div class="kpi">High: {{ scores | select('>=',7) | list | length }}</div>
+            <div class="kpi">Max Risk: {{ scores | max if scores else 0 }}</div>
+        </div>
+    </div>
+
+    <!-- 📊 CHARTS -->
+    <div id="charts" class="page" style="display:none;">
+        <h2>Risk Analytics</h2>
+
+        <div class="chart-grid">
+
+            <div class="chart-card">
+                <h3>Open Ports</h3>
+                <canvas id="barChart"></canvas>
+            </div>
+
+            <div class="chart-card">
+                <h3>Total Risk</h3>
+                <canvas id="riskChart"></canvas>
+            </div>
+
+            <div class="chart-card">
+                <h3>Trend</h3>
+                <canvas id="trendChart"></canvas>
+            </div>
+
+            <div class="chart-card">
+                <h3>Distribution</h3>
+                <canvas id="pieChart"></canvas>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 📋 RESULTS -->
+    <div id="results" class="page" style="display:none;">
+        <h2>Scan Results</h2>
+
+        <table>
+            <tr>
+                <th>Port</th>
+                <th>Issue</th>
+                <th>Risk</th>
+            </tr>
+
+            {% for row in data %}
+            <tr>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <!-- 🌐 THREAT -->
+    <div id="threat" class="page" style="display:none;">
+        <h2>Threat Intelligence</h2>
+
+        {% if threat %}
+            <p><b>IP:</b> {{ threat.ip }}</p>
+            <p><b>Malicious:</b> {{ threat.malicious }}</p>
+            <p><b>Country:</b> {{ threat.country }}</p>
+            <p><b>ISP:</b> {{ threat.isp }}</p>
+        {% endif %}
+    </div>
+
+</div>
+```
+
+</div>
+
+<script>
+function showPage(page) {
+    document.querySelectorAll(".page").forEach(p => p.style.display = "none");
+    document.getElementById(page).style.display = "block";
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+window.onload = function () {
+
+    const ports = {{ ports|tojson }};
+    const scores = {{ scores|tojson }};
+
+    const colors = [
+        "#ff4d4d", "#36a2eb", "#ffce56",
+        "#4bc0c0", "#9966ff", "#ff9f40"
+    ];
+
+    // 🔵 OPEN PORTS
+    new Chart(document.getElementById("barChart"), {
+        type: 'bar',
+        data: {
+            labels: ports,
+            datasets: [{
+                label: "Open Ports",
+                data: scores,
+                backgroundColor: ports.map((_, i) => colors[i % colors.length])
+            }]
+        },
+        options: { responsive: false }
+    });
+
+    // 🔴 TOTAL RISK
+    new Chart(document.getElementById("riskChart"), {
+        type: 'bar',
+        data: {
+            labels: ports,
+            datasets: [{
+                label: "Risk Level",
+                data: scores,
+                backgroundColor: "#ef4444"
+            }]
+        },
+        options: { responsive: false }
+    });
+
+    // 🟢 TREND
+    new Chart(document.getElementById("trendChart"), {
+        type: 'line',
+        data: {
+            labels: ports,
+            datasets: [{
+                label: "Trend",
+                data: scores,
+                borderColor: "#22c55e",
+                fill: false,
+                tension: 0.3
+            }]
+        },
+        options: { responsive: false }
+    });
+
+    // 🟡 PIE
+    new Chart(document.getElementById("pieChart"), {
+        type: 'doughnut',
+        data: {
+            labels: ports,
+            datasets: [{
+                data: scores,
+                backgroundColor: ports.map((_, i) => colors[i % colors.length])
+            }]
+        },
+        options: {
+            responsive: false,
+            cutout: "60%"
+        }
+    });
+
+};
+</script>
+
+</body>
+</html>
