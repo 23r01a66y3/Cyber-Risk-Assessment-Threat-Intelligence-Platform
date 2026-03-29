@@ -202,12 +202,6 @@ streamlit run streamlit_app.py
 
 ---
 
-## 📷 Screenshots
-
-(Add your project screenshots here)
-
----
-
 ## 🎯 Conclusion
 
 This project provides a complete solution for **cyber risk detection, analysis, and visualization**, helping users identify vulnerabilities efficiently.
