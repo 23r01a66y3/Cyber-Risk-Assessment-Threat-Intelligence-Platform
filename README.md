@@ -1,75 +1,38 @@
-Cyber Risk Assessment & Threat Intelligence Platform
+Web Vulnerability Scanner
 Overview
-
-The Cyber Risk Assessment & Threat Intelligence Platform is a Python-based web application designed to identify, analyze, and evaluate cybersecurity risks in real-time.
-
-The system integrates vulnerability scanning, port scanning, and threat intelligence APIs to provide actionable insights and generate detailed reports.
-
-It follows the concept of a Threat Intelligence Platform (TIP), which collects, analyzes, and correlates threat data from multiple sources to help organizations detect and prevent cyber attacks.
+This project is a simple web vulnerability scanning system that detects common security issues in a given website URL. It includes a scanner, a dashboard for visualization, and an email alert system.
 
 Features
-🔍 Port Scanning – Detects open ports using custom scanning logic
-🛡️ Vulnerability Detection – Identifies potential system weaknesses
-📊 Risk Scoring Engine – Calculates risk levels (Low / Medium / High)
-🌐 Threat Intelligence Integration – Uses APIs like VirusTotal
-📄 PDF Report Generation – Downloadable security reports
-📈 Dashboard Visualization – Displays risks and scan results
-Modules / Files Used
-📁 Backend (Core Logic)
-app.py → Main Flask application (routing + UI handling)
-config.py → Configuration variables (thresholds, API keys)
-📁 Database
-database/db.py → Database initialization
-database/operations.py → Insert & fetch scan results
-📁 Scanner Modules
-port_scanner.py → Scans open ports
-vulnerability_scanner.py → Detects vulnerabilities
-📁 Risk Analysis
-risk_engine.py → Calculates risk score based on:
-Open ports
-Vulnerabilities
-Threat intelligence data
-📁 Threat Intelligence
-virustotal_api.py → Fetches threat data from VirusTotal
-📁 Reports
-pdf_report.py → Generates downloadable PDF reports
-📁 Frontend
-templates/
-index.html
-login.html
-register.html
-static/style.css → UI design and styling
+Detects vulnerabilities like:
+
+Missing security headers
+Cross-Site Scripting (XSS)
+SQL Injection
+Open Redirect
+Server Information Disclosure
+Displays results in an interactive dashboard
+
+Calculates overall risk score
+
+Sends email alerts for High and Critical vulnerabilities
+
 Technologies Used
-Backend: Python, Flask
-Frontend: HTML, CSS
-Database: SQLite
-APIs: VirusTotal API
-Libraries: FPDF, Requests
-How the System Works
-User enters target (IP / domain)
-System performs:
-Port scanning
-Vulnerability analysis
-Data is sent to the risk engine
-Risk score is calculated
-Threat intelligence is fetched from external APIs
-Results are stored in the database
-Dashboard displays results
-User can download PDF report
-Future Enhancements
-🔔 Real-time alerts
-🤖 AI-based risk prediction
-🌍 Integration with more threat intelligence sources (Shodan, MISP)
-📊 Advanced analytics dashboard
-Conclusion
-
-This project demonstrates how cyber risk assessment and threat intelligence can be automated using modern tools.
-
-It helps in:
-
-Proactive detection of threats
-Improving security posture
-Enabling better decision-making in cybersecurity environments
-Presented By
-
-SP Keerthi
+Python
+Streamlit
+Requests
+Pandas
+smtplib (for email alerts)
+Setup Instructions
+Install Python (3.x)
+Install required libraries: py -m pip install requests beautifulsoup4 streamlit pandas
+Run the application: streamlit run dashboard.py
+Usage
+Enter a website URL
+Click "Scan"
+View vulnerabilities and risk score
+Email Alert Setup
+Enable 2-Step Verification in Gmail
+Generate App Password
+Update credentials in email_alert.py
+AI Tools Used
+ChatGPT was used to assist in code development and understanding concepts.
