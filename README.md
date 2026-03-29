@@ -1,38 +1,218 @@
-Web Vulnerability Scanner
-Overview
-This project is a simple web vulnerability scanning system that detects common security issues in a given website URL. It includes a scanner, a dashboard for visualization, and an email alert system.
+# 🛡️ Cyber Risk Assessment & Threat Intelligence Platform
 
-Features
-Detects vulnerabilities like:
+## 📌 Overview
 
-Missing security headers
-Cross-Site Scripting (XSS)
-SQL Injection
-Open Redirect
-Server Information Disclosure
-Displays results in an interactive dashboard
+This project is a **Cyber Risk Assessment and Threat Intelligence Platform** built using Python, Flask, and Streamlit. It scans target systems, detects vulnerabilities, assigns risk scores, and integrates external threat intelligence using the VirusTotal API.
 
-Calculates overall risk score
+The system helps in identifying potential security risks and visualizing them through dashboards.
 
-Sends email alerts for High and Critical vulnerabilities
+---
 
-Technologies Used
-Python
-Streamlit
-Requests
-Pandas
-smtplib (for email alerts)
-Setup Instructions
-Install Python (3.x)
-Install required libraries: py -m pip install requests beautifulsoup4 streamlit pandas
-Run the application: streamlit run dashboard.py
-Usage
-Enter a website URL
-Click "Scan"
-View vulnerabilities and risk score
-Email Alert Setup
-Enable 2-Step Verification in Gmail
-Generate App Password
-Update credentials in email_alert.py
-AI Tools Used
-ChatGPT was used to assist in code development and understanding concepts.
+## 🚀 Features
+
+* 🔍 Port Scanning using Nmap
+* 🛡️ Vulnerability Detection
+* ⚠️ Risk Scoring System
+* 🗄️ SQLite Database Storage
+* 📊 Data Visualization (Charts & Dashboard)
+* 🌐 Threat Intelligence using VirusTotal API
+* 📄 Report Generation
+* 📧 Email Alerts (Streamlit Dashboard)
+
+---
+
+## 🏗️ Project Structure
+
+```
+project/
+│
+├── app.py
+├── config.py
+├── database/
+│   ├── db.py
+│   └── m.py
+│
+├── scanner/
+│   ├── port_scanner.py
+│   └── vulnerability_scanner.py
+│
+├── risk/
+│   └── risk_engine.py
+│
+├── threat_intel/
+│   └── threat_api.py
+│
+├── templates/
+│   ├── index.html
+│   └── report.html
+│
+├── static/
+│   └── style.css
+│
+├── streamlit_app.py
+└── reports/
+```
+
+---
+
+## 🧠 Architecture
+
+```
+USER
+  ↓
+FRONTEND (HTML / Streamlit)
+  ↓
+BACKEND (Flask)
+  ├── Port Scanner
+  ├── Vulnerability Scanner
+  ├── Risk Engine
+  ├── Threat Intelligence API
+  ↓
+DATABASE (SQLite - cyber_risk.db)
+  ↓
+FRONTEND (Results + Charts)
+```
+
+---
+
+## ⚙️ Technologies Used
+
+* Python
+* Flask
+* Streamlit
+* SQLite
+* Nmap
+* Chart.js / Plotly
+* VirusTotal API
+
+---
+
+## 📂 Modules Description
+
+### 🔹 database/db.py
+
+* Handles database connection
+* Creates `scan_results` table
+
+### 🔹 database/m.py
+
+* Inserts and fetches scan results
+
+### 🔹 scanner/port_scanner.py
+
+* Scans open ports using Nmap
+
+### 🔹 scanner/vulnerability_scanner.py
+
+* Maps ports to vulnerabilities
+
+### 🔹 risk/risk_engine.py
+
+* Assigns risk scores
+
+### 🔹 threat_intel/threat_api.py
+
+* Fetches threat intelligence data
+
+### 🔹 app.py
+
+* Main Flask application
+* Controls workflow
+
+### 🔹 streamlit_app.py
+
+* Advanced dashboard with charts and alerts
+
+---
+
+## 🗄️ Database
+
+* **Database Name:** `cyber_risk.db`
+* **Table:** `scan_results`
+
+| Column     | Description   |
+| ---------- | ------------- |
+| id         | Primary Key   |
+| port       | Port Number   |
+| issue      | Vulnerability |
+| risk_score | Risk Level    |
+
+---
+
+## ▶️ How to Run
+
+### 1️⃣ Install Requirements
+
+```bash
+pip install flask streamlit pandas plotly python-nmap requests
+```
+
+### 2️⃣ Run Flask App
+
+```bash
+python app.py
+```
+
+### 3️⃣ Run Streamlit Dashboard
+
+```bash
+streamlit run streamlit_app.py
+```
+
+---
+
+## 🧪 Sample Targets
+
+* testasp.vulnweb.com
+* testphp.vulnweb.com
+* zero.webappsecurity.com
+
+---
+
+## 📊 Output
+
+* Displays open ports and vulnerabilities
+* Shows risk scores
+* Provides charts and analytics
+* Displays threat intelligence (IP, ISP, Country)
+
+---
+
+## ⚠️ Challenges
+
+* Integrating Nmap with Python
+* Handling API errors
+* Designing dashboard UI
+* Managing database operations
+
+---
+
+## 📈 Future Scope
+
+* Add AI-based risk prediction
+* Integrate more APIs (Shodan, Nessus)
+* Deploy on cloud
+* Add authentication system
+---
+
+## 📌 Note
+
+* Use valid API key for VirusTotal
+* Nmap must be installed in system
+
+---
+
+## 📷 Screenshots
+
+(Add your project screenshots here)
+
+---
+
+## 🎯 Conclusion
+
+This project provides a complete solution for **cyber risk detection, analysis, and visualization**, helping users identify vulnerabilities efficiently.
+
+## 👩‍💻 Presented By
+
+**SP Keerthi**
+
