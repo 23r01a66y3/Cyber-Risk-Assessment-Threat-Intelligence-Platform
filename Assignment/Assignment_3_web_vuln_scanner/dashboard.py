@@ -24,4 +24,4 @@ if st.button("Scan"):
         risk_score = df["score"].mean()
         st.subheader(f"Overall Risk Score: {round(risk_score,2)}")
 
-        send_alert("spkeerthi09@gmail.com", results, url)
+        send_alert("*******@gmail.com", results, url)
