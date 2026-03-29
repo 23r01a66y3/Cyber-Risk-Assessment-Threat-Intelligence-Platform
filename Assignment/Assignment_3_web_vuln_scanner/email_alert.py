@@ -28,7 +28,7 @@ def send_alert(email, findings, url):
 
     server = smtplib.SMTP("smtp.gmail.com", 587)
     server.starttls()
-    server.login("spkeerthi09@gmail.com", "paid lvfg nqgh uziv")
+    server.login("your_email@gmail.com", "paid lvfg nqgh uziv")
 
     server.send_message(msg)
     server.quit()
